@@ -1,7 +1,7 @@
-name: python-environment
+ name: python-environment
 channels:
-  -conda-forge
+  - conda-forge
 dependencies:
--numpy
--matplotlib
--pandas
+  - numpy
+  - matplotlib
+  - pandas
