@@ -1,0 +1,43 @@
+num<-sample(seq(1,100), size = 1)
+guesses <- 0
+guess <- 0
+
+print("WELCOME TO GUESS ME!")
+print( "I'm thinking of a number between 1 and 100")
+print("If your guess is more than 10 away from my number, I'll tell you you're COLD")
+print("If your guess is within 10 of my number, I'll tell you you're WARM")
+print("If your guess is farther than your most recent guess, I'll say you're getting COLDER")
+print("If your guess is closer than your most recent guess, I'll say you're getting WARMER")
+print("LET'S PLAY!")
+while (TRUE) {
+  cat("Guess a number between 1 and 100.", 
+      "\nWhat is your guess?")
+  guess <- scan(n=1)
+  guesses<-append(guesses, values = guess)
+  
+  if (guess>100 | guess<1){
+    cat("OUT OF BOUNDS. Try Again!")
+  }
+  #this code is for the first guess if its within 10 say warm
+  if ((length(guesses)==2) & abs(guess-num)<=10){
+    cat("\nWARM", "\n")
+    previous = guess
+  }
+  if ((length(guesses)==2) & abs(guess-num)>10){
+    cat("\nCOLD!", "\n")
+    previous = guess
+  }
+  if ((length(guesses)>2) & ((abs(guess-num)) < (abs(previous-num))) & guess!=num){
+    cat("\nWARMER", "\n")
+    previous = guess
+  }
+  if ((length(guesses)>2) & ((abs(guess-num)) > (abs(previous-num))) & guess!=num){
+    cat("\nCOLDER!", "\n")
+    previous = guess
+  }
+  if (guess == num) {
+    cat("Congrats! you guessed it in only ",(length(guesses)-1) , "guesses")
+    break
+  }
+  
+}
